@@ -21,23 +21,28 @@
         var cache = {};
         var instrumentName = $routeParams.instrumentName;
 
-        $scope.instrument = _.find(sounds, function(instrument_sounds) {
+        var instrument = _.find(sounds, function(instrument_sounds) {
             return instrument_sounds.name == instrumentName;
         });
 
-        $scope.sounds = _.map($scope.instrument.sounds, function(name) {
-            var sound = {
-                audio: new Audio('public/sounds/' + name + '.mp3'),
-                loaded: false,
-                name: name
-            };
-            sound.audio.load();
-            sound.audio.oncanplaythrough = function() {
-                sound.loaded = true;
-                $scope.$apply();
-            };
-            return sound;
-        });
+        console.log(instrument);
+        if (!instrument.audio) {
+            instrument.audio = _.map(instrument.sounds, function(name) {
+                var sound = {
+                    audio: new Audio('public/sounds/' + name + '.mp3'),
+                    loaded: false,
+                    name: name
+                };
+                sound.audio.load();
+                sound.audio.oncanplaythrough = function() {
+                    sound.loaded = true;
+                    $scope.$apply();
+                };
+                return sound;
+            });
+        }
+
+        $scope.sounds = instrument.audio;
 
         $scope.play = function(sound) {
             sound.audio.play();

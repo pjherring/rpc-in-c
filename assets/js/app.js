@@ -57,27 +57,6 @@
                     'flute/51', 'flute/52', 'flute/53'
                 ],
             }];
-            _.each(sounds, function(instrument) {
-                instrument.loaded = false;
-                instrument.audio = [];
-                instrument.load = function() {
-                    if (!instrument.loaded) {
-                        instrument.loaded = true;
-                        _.each(instrument.sounds, function(sound) {
-                            var audio = {
-                                audio: new Audio('public/sounds/' + sound + '.mp3'),
-                                loaded: false,
-                                name: sound
-                            };
-                            audio.audio.load();
-                            audio.audio.oncanplaythrough = function() {
-                                audio.loaded = true;
-                            };
-                            instrument.audio.push(audio);
-                        });
-                    }
-                }
-            });
         return sounds;
     }]);
 

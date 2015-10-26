@@ -1,0 +1,23 @@
+body {
+  background: #231f20;
+  font-family: 'Guardian Egyptian Text', Georgia, serif;
+  color: #add9f4; }
+
+.instrument {
+  margin: 30px 0; }
+  .instrument .icon {
+    text-align: center; }
+
+.sounds-wrapper .sound {
+  margin: 25px 0; }
+  .sounds-wrapper .sound .button {
+    margin: 0 auto;
+    background: #d1603d;
+    font-size: 32px;
+    text-align: center;
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    line-height: 90px; }
+
+/*# sourceMappingURL=instrument.css.map */

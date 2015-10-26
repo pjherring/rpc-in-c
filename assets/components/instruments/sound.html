@@ -1,0 +1,11 @@
+<div class="container sounds-wrapper">
+    <div class="row">
+
+        <div class="col-xs-4 sound" ng-repeat="sound in instrument.sounds track by $index">
+            <div class="button" ng-click="playSound(sound)">
+                {{$index + 1}}
+            </div>
+        </div>
+
+    </div>
+</div>

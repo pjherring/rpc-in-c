@@ -19,11 +19,11 @@
 
     function SoundController($scope, _, $routeParams, sounds, lowLag) {
         var instrumentName = $routeParams.instrumentName;
-        var cache = {};
 
         $scope.instrument = _.find(sounds, function(instrument_sounds) {
             return instrument_sounds.name == instrumentName;
         });
+        $scope.instrument.load();
 
         $scope.playSound = function(name) {
             lowLag.play(name);

@@ -49,7 +49,17 @@
                     'clarinet/41', 'clarinet/42', 'clarinet/43', 'clarinet/44', 'clarinet/45',
                     'clarinet/46', 'clarinet/47', 'clarinet/48', 'clarinet/49', 'clarinet/50',
                     'clarinet/51', 'clarinet/52', 'clarinet/53'
-                ]
+                ],
+                loaded: false,
+                load: function() {
+                    if (!this.loaded) {
+                        console.log('loading ' + this.name);
+                        _.each(this.sounds, function(sound) {
+                            lowLag.load([sound + '.mp3'], sound);
+                        });
+                        this.loaded = true;
+                    }
+                }
             },
             {
                 name: 'flute',
@@ -66,12 +76,17 @@
                     'flute/41', 'flute/42', 'flute/43', 'flute/44', 'flute/45',
                     'flute/46', 'flute/47', 'flute/48', 'flute/49', 'flute/50',
                     'flute/51', 'flute/52', 'flute/53'
-                ]
-            }]; _.each(sounds, function(instrument) { _.each(instrument.sounds, function(name) {
-                lowLag.load([name + '.mp3'], name);
-            });
-        });
-
+                ],
+                load: function() {
+                    if (!this.loaded) {
+                        console.log('loading ' + this.name);
+                        _.each(this.sounds, function(sound) {
+                            lowLag.load([sound + '.mp3'], sound);
+                        });
+                        this.loaded = true;
+                    }
+                }
+            }];
         return sounds;
     }]);
 

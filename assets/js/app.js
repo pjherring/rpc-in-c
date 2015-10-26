@@ -59,12 +59,21 @@
             }];
             _.each(sounds, function(instrument) {
                 instrument.loaded = false;
+                instrument.audio = [];
                 instrument.load = function() {
                     if (!instrument.loaded) {
                         instrument.loaded = true;
-                        console.log('loading ' + instrument.name);
                         _.each(instrument.sounds, function(sound) {
-                            instrument[sound] = new Audio('public/sounds/' + sound + '.mp3');
+                            var audio = {
+                                audio: new Audio('public/sounds/' + sound + '.mp3'),
+                                loaded: false,
+                                name: sound
+                            };
+                            audio.audio.load();
+                            audio.audio.oncanplaythrough = function() {
+                                audio.loaded = true;
+                            };
+                            instrument.audio.push(audio);
                         });
                     }
                 }

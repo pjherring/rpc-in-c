@@ -24,10 +24,23 @@
         $scope.instrument = _.find(sounds, function(instrument_sounds) {
             return instrument_sounds.name == instrumentName;
         });
-        $scope.instrument.load();
 
-        $scope.playSound = function(name) {
-            $scope.instrument[name].play();
+        $scope.sounds = _.map($scope.instrument.sounds, function(name) {
+            var sound = {
+                audio: new Audio('public/sounds/' + name + '.mp3'),
+                loaded: false,
+                name: name
+            };
+            sound.audio.load();
+            sound.audio.oncanplaythrough = function() {
+                sound.loaded = true;
+                $scope.$apply();
+            };
+            return sound;
+        });
+
+        $scope.play = function(sound) {
+            sound.audio.play();
         }
     }
 

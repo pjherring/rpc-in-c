@@ -1,5 +1,3 @@
-'use strict';
-
 (function(module) {
 	module.config(['$routeProvider', function($routeProvider) {
 		$routeProvider
@@ -22,17 +20,7 @@
         return $window._;
     }]);
 
-    module.factory('lowLag', ['$window', function lowLagFactory($window) {
-        console.log('init lowlag');
-        $window.lowLag.init({
-            sm2url: 'public/js/lib/sm2/swf',
-            urlPrefix: 'public/sounds/',
-            debug: 'none'
-        });
-        return $window.lowLag;
-    }]);
-
-    module.factory('sounds', ['_', 'lowLag', function soundsFactory(_, lowLag) {
+    module.factory('sounds', ['_', function soundsFactory(_) {
         var sounds = [
             {
                 name: 'clarinet',
@@ -51,15 +39,6 @@
                     'clarinet/51', 'clarinet/52', 'clarinet/53'
                 ],
                 loaded: false,
-                load: function() {
-                    if (!this.loaded) {
-                        console.log('loading ' + this.name);
-                        _.each(this.sounds, function(sound) {
-                            lowLag.load([sound + '.mp3'], sound);
-                        });
-                        this.loaded = true;
-                    }
-                }
             },
             {
                 name: 'flute',
@@ -77,16 +56,19 @@
                     'flute/46', 'flute/47', 'flute/48', 'flute/49', 'flute/50',
                     'flute/51', 'flute/52', 'flute/53'
                 ],
-                load: function() {
-                    if (!this.loaded) {
-                        console.log('loading ' + this.name);
-                        _.each(this.sounds, function(sound) {
-                            lowLag.load([sound + '.mp3'], sound);
+            }];
+            _.each(sounds, function(instrument) {
+                instrument.loaded = false;
+                instrument.load = function() {
+                    if (!instrument.loaded) {
+                        instrument.loaded = true;
+                        console.log('loading ' + instrument.name);
+                        _.each(instrument.sounds, function(sound) {
+                            instrument[sound] = new Audio('public/sounds/' + sound + '.mp3');
                         });
-                        this.loaded = true;
                     }
                 }
-            }];
+            });
         return sounds;
     }]);
 

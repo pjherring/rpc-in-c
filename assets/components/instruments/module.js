@@ -17,16 +17,23 @@
 
     }
 
-    function SoundController($scope, _, $routeParams, sounds, lowLag) {
+    function SoundController($scope, _, $routeParams, sounds, lowLag, $sce) {
+        var cache = {};
         var instrumentName = $routeParams.instrumentName;
 
         $scope.instrument = _.find(sounds, function(instrument_sounds) {
             return instrument_sounds.name == instrumentName;
         });
-        $scope.instrument.load();
+
+        $scope.getFile = function(file) {
+            return 'public/sounds/' + file + '.mp3';
+        }
 
         $scope.playSound = function(name) {
-            lowLag.play(name);
+            if (!cache[name]) {
+                cache[name] = document.getElementById(name);
+            }
+            cache[name].play();
         }
     }
 
@@ -36,7 +43,7 @@
 
     module.controller(
         'InstrumentSoundController',
-        ['$scope', '_', '$routeParams', 'sounds', 'lowLag', SoundController]
+        ['$scope', '_', '$routeParams', 'sounds', 'lowLag', '$sce', SoundController]
     );
 
 })(angular.module('instruments', []));

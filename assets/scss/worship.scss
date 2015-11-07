@@ -1,6 +1,6 @@
-$background_color: #323234; //rgba(35, 31, 32, 100)
+$standard_color: #323234; //rgba(35, 31, 32, 100)
 $error_color: #EE5932; //rgba(209, 96, 61, 100)
-$standard_color: #FFFFFF; //rgba(173, 217, 244, 100)
+$background_color: #FFFFFF; //rgba(173, 217, 244, 100)
 $variant_one_color: #ADADAE; //rgba(217, 240, 255, 100)
 $variant_two_color: #a3d5ff; //rgba(163, 213, 255, 100)
 
@@ -19,8 +19,17 @@ body {
 .title {
     width: 100%;
     text-align: center;
+    margin: 40px 0 0;
 }
 
-h4.title {
-    margin: 40px 0 0;
+.instrument-choice {
+    padding: 10px 0;
+}
+
+.logo-wrapper {
+    width: 100%;
+
+    img {
+        max-width: 100%;
+    }
 }

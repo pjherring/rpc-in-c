@@ -1,3 +1,6 @@
+<div class="container back">
+    <span ng-click="goBack()" class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+</div>
 <div class="container sounds-wrapper">
     <div class="row">
 
@@ -5,7 +8,7 @@
             <div ng-show="sound.loaded" 
                  ng-class="{playing: sound.playing}"
                  class="button" ng-click="play(sound)">
-                {{$index + 1}}
+                <div class="inner"></div>
             </div>
         </div>
 

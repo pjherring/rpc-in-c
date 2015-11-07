@@ -17,7 +17,7 @@
 
     }
 
-    function SoundController($scope, _, $routeParams, sounds, $sce) {
+    function SoundController($scope, _, $routeParams, sounds, $sce, $location) {
         var cache = {};
         var instrumentName = $routeParams.instrumentName;
 
@@ -52,9 +52,13 @@
         $scope.sounds = instrument.audio;
 
         $scope.play = function(sound) {
-
             sound.audio.play();
         }
+
+        $scope.goBack = function() {
+            $location.path('/');
+        }
+
     }
 
     module.controller(
@@ -63,7 +67,7 @@
 
     module.controller(
         'InstrumentSoundController',
-        ['$scope', '_', '$routeParams', 'sounds', '$sce', SoundController]
+        ['$scope', '_', '$routeParams', 'sounds', '$sce', '$location', SoundController]
     );
 
 })(angular.module('instruments', []));

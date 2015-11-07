@@ -2,16 +2,22 @@
   font-family: 'Montserrat';
   src: url("../fonts/montserrat/Montserrat-Regular.otf") format("opentype"), url("../fonts/montserrat/Montserrat-Regular.ttf") format("truetype"); }
 body {
-  background: #323234;
+  background: #FFFFFF;
   font-family: 'Montserrat', 'Guardian Egyptian Text', Georgia, serif;
-  color: #FFFFFF; }
+  color: #323234; }
 
 .title {
   width: 100%;
-  text-align: center; }
-
-h4.title {
+  text-align: center;
   margin: 40px 0 0; }
+
+.instrument-choice {
+  padding: 10px 0; }
+
+.logo-wrapper {
+  width: 100%; }
+  .logo-wrapper img {
+    max-width: 100%; }
 
 .instrument {
   margin: 30px 0; }
@@ -22,15 +28,30 @@ h4.title {
   margin: 25px 0; }
   .sounds-wrapper .sound .button {
     margin: 0 auto;
-    background: #EE5932;
+    background: #ADADAE;
     font-size: 32px;
     text-align: center;
     border-radius: 50%;
     height: 90px;
     width: 90px;
     line-height: 90px;
-    transition: background 2s; }
+    transition: background 1s;
+    position: relative; }
+    .sounds-wrapper .sound .button .inner {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      border-radius: 50%;
+      background: #323234;
+      height: 30px;
+      width: 30px; }
     .sounds-wrapper .sound .button.playing {
-      background: #ADADAE; }
+      background: #EE5932; }
+
+.back {
+  text-align: center;
+  font-size: 44px;
+  margin: 10px 0 0;
+  color: #EE5932; }
 
 /*# sourceMappingURL=instrument.css.map */

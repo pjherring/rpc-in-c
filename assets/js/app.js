@@ -1,6 +1,6 @@
 (function(module) {
-	module.config(['$routeProvider', function($routeProvider) {
-		$routeProvider
+    module.config(['$routeProvider', function($routeProvider) {
+        $routeProvider
         .when(
             '/', 
             { 
@@ -8,13 +8,13 @@
                 controller: 'InstrumentsController'
             }
         ).when(
-            '/instrument/:instrumentName',
-            {
-                templateUrl: 'public/components/instruments/sound.html',
-                controller: 'InstrumentSoundController'
-            }
+        '/instrument/:instrumentName',
+        {
+            templateUrl: 'public/components/instruments/sound.html',
+            controller: 'InstrumentSoundController'
+        }
         );
-	}]);
+    }]);
 
     module.factory('_', ['$window', function underscoreFactory($window) {
         return $window._;
@@ -51,10 +51,10 @@
                     'flute/11', 
                     //'flute/12', 'flute/13', 'flute/14', 'flute/15'
                     /*'flute/16', 'flute/17', 'flute/18', 'flute/19', 'flute/20',
-                    'flute/21', 'flute/22', 'flute/23', 'flute/24', 'flute/25',
-                    'flute/26', 'flute/27', 'flute/28', 'flute/29', 'flute/30',
-                    'flute/31', 'flute/32', 'flute/33', 'flute/34', 'flute/35',
-                    'flute/36',*/
+                      'flute/21', 'flute/22', 'flute/23', 'flute/24', 'flute/25',
+                      'flute/26', 'flute/27', 'flute/28', 'flute/29', 'flute/30',
+                      'flute/31', 'flute/32', 'flute/33', 'flute/34', 'flute/35',
+                      'flute/36',*/
                     'flute/37', 'flute/38', 'flute/39', 'flute/40',
                     'flute/41', 'flute/42', 'flute/43', 'flute/44', 'flute/45',
                     'flute/46', 'flute/47', 'flute/48', 'flute/49', 'flute/50',
@@ -70,10 +70,10 @@
                     'violin/11', 
                     //'violin/12', 'violin/13', 'violin/14', 'violin/15'
                     /*'violin/16', 'violin/17', 'violin/18', 'violin/19', 'violin/20',
-                    'violin/21', 'violin/22', 'violin/23', 'violin/24', 'violin/25',
-                    'violin/26', 'violin/27', 'violin/28', 'violin/29', 'violin/30',
-                    'violin/31', 'violin/32', 'violin/33', 'violin/34', 'violin/35',
-                    'violin/36',*/
+                      'violin/21', 'violin/22', 'violin/23', 'violin/24', 'violin/25',
+                      'violin/26', 'violin/27', 'violin/28', 'violin/29', 'violin/30',
+                      'violin/31', 'violin/32', 'violin/33', 'violin/34', 'violin/35',
+                      'violin/36',*/
                     'violin/37', 'violin/38', 'violin/39', 'violin/40',
                     'violin/41', 'violin/42', 'violin/43', 'violin/44', 'violin/45',
                     'violin/46', 'violin/47', 'violin/48', 'violin/49', 'violin/50',
@@ -81,14 +81,29 @@
                 ],
             }
         ];
+
+        _.each(sounds, function(instrument) {
+            instrument.audio = _.map(instrument.sounds, function(name) {
+                var sound = {
+                    audio: new Audio('public/sounds/' + name + '.mp3'),
+                    loaded: false,
+                    name: name
+                };
+                sound.audio.load();
+                sound.audio.oncanplaythrough = function() {
+                    sound.loaded = true;
+                };
+                return sound;
+            });
+        });
         return sounds;
     }]);
 
 })(angular.module(
-	'worshipApp', 
-	[
-		'ngRoute',
+    'worshipApp', 
+    [
+        'ngRoute',
         'ngTouch',
-		'instruments'
-	]
+        'instruments'
+    ]
 ));

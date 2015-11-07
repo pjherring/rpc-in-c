@@ -25,29 +25,22 @@
             return instrument_sounds.name == instrumentName;
         });
 
-        if (!instrument.audio) {
-            instrument.audio = _.map(instrument.sounds, function(name) {
-                var sound = {
-                    audio: new Audio('public/sounds/' + name + '.mp3'),
-                    loaded: false,
-                    name: name
-                };
-                sound.audio.load();
-                sound.audio.oncanplaythrough = function() {
-                    sound.loaded = true;
+        _.each(instrument.audio, function(audio) {
+            if (!audio.loaded) {
+                audio.audio.oncanplaythrough = function() {
+                    audio.loaded = true;
                     $scope.$apply();
                 };
-                sound.audio.onended = function() {
-                    sound.playing = false;
-                    $scope.$apply();
-                };
-                sound.audio.onplay = function() {
-                    sound.playing = true;
-                    $scope.$apply();
-                };
-                return sound;
-            });
-        }
+            }
+            audio.audio.onended = function() {
+                audio.playing = false;
+                $scope.$apply();
+            };
+            audio.audio.onplay = function() {
+                audio.playing = true;
+                $scope.$apply();
+            };
+        });
 
         $scope.sounds = instrument.audio;
 

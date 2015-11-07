@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -23,11 +24,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("assets"))))
+	http.Handle("/public/", cacheStatic(http.StripPrefix("/public/", http.FileServer(http.Dir("assets")))))
 	http.HandleFunc("/", handler)
 	port := ":" + os.Getenv("PORT")
 	if port == ":" {
 		port = ":8080"
 	}
 	http.ListenAndServe(port, nil)
+}
+
+func cacheStatic(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Cache-Control", fmt.Sprintf("max-age=%d, public", 86400))
+		h.ServeHTTP(w, r)
+	})
 }

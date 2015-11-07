@@ -25,7 +25,6 @@
             return instrument_sounds.name == instrumentName;
         });
 
-        console.log(instrument);
         if (!instrument.audio) {
             instrument.audio = _.map(instrument.sounds, function(name) {
                 var sound = {
@@ -38,6 +37,14 @@
                     sound.loaded = true;
                     $scope.$apply();
                 };
+                sound.audio.onended = function() {
+                    sound.playing = false;
+                    $scope.$apply();
+                };
+                sound.audio.onplay = function() {
+                    sound.playing = true;
+                    $scope.$apply();
+                };
                 return sound;
             });
         }
@@ -45,6 +52,7 @@
         $scope.sounds = instrument.audio;
 
         $scope.play = function(sound) {
+
             sound.audio.play();
         }
     }

@@ -26,6 +26,11 @@ $break-small: 750px;
             height: 90px;
             width: 90px;
             line-height: 90px;
+            transition: background 2s;
+
+            &.playing {
+                background: $variant_one_color;
+            }
         }
     }
 }

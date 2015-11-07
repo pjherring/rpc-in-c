@@ -1,6 +1,16 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../fonts/montserrat/Montserrat-Regular.otf") format("opentype"), url("../fonts/montserrat/Montserrat-Regular.ttf") format("truetype"); }
 body {
-  background: #231f20;
-  font-family: 'Guardian Egyptian Text', Georgia, serif;
-  color: #add9f4; }
+  background: #323234;
+  font-family: 'Montserrat', 'Guardian Egyptian Text', Georgia, serif;
+  color: #FFFFFF; }
+
+.title {
+  width: 100%;
+  text-align: center; }
+
+h4.title {
+  margin: 40px 0 0; }
 
 /*# sourceMappingURL=worship.css.map */

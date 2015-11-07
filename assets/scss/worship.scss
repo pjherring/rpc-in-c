@@ -1,11 +1,26 @@
-$background_color: #231f20; //rgba(35, 31, 32, 100)
-$error_color: #d1603d; //rgba(209, 96, 61, 100)
-$standard_color: #add9f4; //rgba(173, 217, 244, 100)
-$variant_one_color: #d9f0ff; //rgba(217, 240, 255, 100)
+$background_color: #323234; //rgba(35, 31, 32, 100)
+$error_color: #EE5932; //rgba(209, 96, 61, 100)
+$standard_color: #FFFFFF; //rgba(173, 217, 244, 100)
+$variant_one_color: #ADADAE; //rgba(217, 240, 255, 100)
 $variant_two_color: #a3d5ff; //rgba(163, 213, 255, 100)
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat/Montserrat-Regular.otf') format('opentype'),
+        url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+}
 
 body {
     background: $background_color;
-    font-family: 'Guardian Egyptian Text', Georgia, serif;
+    font-family: 'Montserrat', 'Guardian Egyptian Text', Georgia, serif;
     color: $standard_color;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+h4.title {
+    margin: 40px 0 0;
 }

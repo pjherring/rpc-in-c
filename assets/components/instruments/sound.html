@@ -1,16 +1,16 @@
-<div class="container back">
-    <span ng-click="goBack()" class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-</div>
-<div class="container sounds-wrapper">
-    <div class="row">
+<div class="worship-bg" ng-style="worshipBg">
+    <div class="container back">
+        <span ng-click="goBack()" class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+    </div>
+    <div class="container sounds-wrapper">
+        <div class="row">
 
-        <div class="col-xs-4 sound" ng-repeat="sound in sounds track by $index">
-            <div ng-show="sound.loaded" 
-                 ng-class="{playing: sound.playing}"
-                 class="button" ng-click="play(sound)">
-                <div class="inner"></div>
+            <div class="col-xs-4 sound" ng-repeat="sound in sounds track by $index">
+                <div ng-show="sound.loaded" ng-style="worshipButton" class="button" ng-click="play(sound, $index)">
+                    <div ng-style="worshipButton" class="inner"></div>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>

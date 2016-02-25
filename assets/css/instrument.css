@@ -4,7 +4,7 @@
 body {
   background: #FFFFFF;
   font-family: 'Montserrat', 'Guardian Egyptian Text', Georgia, serif;
-  color: #323234; }
+  color: #FFF; }
 
 .title {
   width: 100%;
@@ -19,16 +19,24 @@ body {
   .logo-wrapper img {
     max-width: 100%; }
 
+body {
+  background: #1e2a3c; }
+
 .instrument {
   margin: 30px 0; }
   .instrument .icon {
     text-align: center; }
 
+.worship-bg {
+  height: 100%;
+  width: 100%;
+  transition: background 0.5s; }
+
 .sounds-wrapper .sound {
   margin: 25px 0; }
   .sounds-wrapper .sound .button {
     margin: 0 auto;
-    background: #ADADAE;
+    background: #FFF;
     font-size: 32px;
     text-align: center;
     border-radius: 50%;
@@ -44,7 +52,8 @@ body {
       border-radius: 50%;
       background: #323234;
       height: 30px;
-      width: 30px; }
+      width: 30px;
+      transition: background 0.5s; }
     .sounds-wrapper .sound .button.playing {
       background: #EE5932; }
 

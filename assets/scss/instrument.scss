@@ -1,6 +1,11 @@
 @import 'worship';
 
 $break-small: 750px;
+$background-color: #1e2a3c;
+
+body {
+    background: $background-color;
+}
 
 .instrument {
 
@@ -12,6 +17,12 @@ $break-small: 750px;
 
 }
 
+.worship-bg {
+    height: 100%;
+    width: 100%;
+    transition: background 0.5s;
+}
+
 .sounds-wrapper {
     .sound {
         
@@ -19,7 +30,7 @@ $break-small: 750px;
 
         .button {
             margin: 0 auto;
-            background: $variant_one_color;
+            background: #FFF;
             font-size: 32px;
             text-align: center;
             border-radius: 50%;
@@ -37,6 +48,7 @@ $break-small: 750px;
                 background: $standard_color;
                 height:30px;
                 width: 30px;
+                transition: background 0.5s;
             }
 
             &.playing {
